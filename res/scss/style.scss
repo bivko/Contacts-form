@@ -61,14 +61,21 @@ $gray2: #efefef;
 	}
 }
 [type="text"]{
-	width: 278px;
+	width: 230px;
 	margin-bottom: 5px;
 	border: 1px solid $gray;
 	padding: 3px 10px;
 }
+.searchField{width: 278px;}
 input.group{width: 150px;}
 input.error{
 	border-color: red;
+}
+span.error{
+	color: red;
+	font-size: 11px;
+	font-weight: normal;
+	margin-left: 20px;
 }
 select{
 	margin-bottom: 5px;

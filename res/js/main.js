@@ -52,9 +52,9 @@ function contactsConstructor(){
 		$('.buttonSet button').show();
 		$('#edit').hide();
 		var group = $('.group').text();		
-		$('.name').html('<input type="text" value="'+name+'" id="name" placeholder="Name">');
-		$('.mail').html('<input type="text" value="'+mail+'" id="mail" placeholder="E-mail">');
-		$('.phone').html('<input type="text" value="'+phone+'" id="phone" placeholder="Phone">');
+		$('.name').html('<input type="text" value="'+name+'" id="name" placeholder="Name" maxlength="20">');
+		$('.mail').html('<input type="text" value="'+mail+'" id="mail" placeholder="name@gmail.com">');
+		$('.phone').html('<input type="text" value="'+phone+'" id="phone" placeholder="+38(044)123-45-67">');
 		$('.group').html('<select id="groups">' + $('.groupSelect').html() + '</select>');
 		
 		if(data==='new'){
@@ -89,15 +89,26 @@ function contactsConstructor(){
 	
 	this.validation = function(elem,value,type){
 		var result;
-		if(type == 'name') result = this.nameValidation(value);
-		if(type == 'phone') result = this.phoneValidation(value);
-		if(type == 'mail') result = this.emailValidation(value);
+		var message;
+		if(type == 'name'){
+			result = this.nameValidation(value);
+			message = 'Please enter valid name';
+		}
+		if(type == 'phone'){
+			result = this.phoneValidation(value);
+			message = 'Please enter number like +38(044)123-45-67';
+		}
+		if(type == 'mail'){
+			result = this.emailValidation(value);
+			message = 'Please enter valid e-mail';
+		}
 		
 		if(!result){
-			elem.addClass('error');
+			elem.addClass('error').parent().find('span').remove()
+			elem.parent().append('<span class="error">'+message+'</span>');
 			return 1;
 		}else{
-			elem.removeClass('error');
+			elem.removeClass('error').parent().find('span').remove();
 			return 0;
 		}
 	}
