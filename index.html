@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Contacts Book</title>
+		<link rel="stylesheet" type="text/css" href="res/css/style.css" />
+		<script type="text/javascript" src="res/js/main.js"></script>
+	</head>
+	<body>
+		<div class="wraper">
+			<aside>
+				<form action="">
+					<input class="searchField" type="text" placeholder="Search your contancts" value="">
+					<select class="groupSelect"></select>
+				</form>
+				<ul class="addressList"></ul>
+				<button id="new">Add</button>
+				<button id="remove">Remove</button>
+			</aside>
+			<main>
+				<input type="hidden" name="id" id="userId" value="">
+				<header>
+					<img class="picture" src="res/images/noImg.jpg" alt="">
+					<div class="name"></div>
+				</header>
+				<div class="mail"></div>
+				<div class="phone"></div>
+				<div class="group"></div>
+				<div class="buttonSet">
+					<button id="edit">Edit</button>
+					<button id="save">Save</button>
+					<button id="cancel">Cancel</button>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>
