@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 	$contactsFile = "res/js/contacts.json";
 	$groupsFile = "res/js/groups.json";
 	$string = file_get_contents($contactsFile);
@@ -6,7 +6,7 @@
 		
 	foreach ($json as $key => $val) {
 		if(is_array($val)) {
-			/*Ïîèñê ìàêñ ID*/
+			/*ÐŸÐ¾Ð¸ÑÐº Ð¼Ð°ÐºÑ ID*/
 			$lastID = 0;
 			foreach ($val as $z => $y) {
 				if(!is_array($y) && $z=="userID" && $lastID < $y) $lastID= $y+1;
@@ -16,26 +16,26 @@
 	
 	if($_GET['type'] == 'editContact'){
 		if($_GET['userID']=='new'){
-			/*äîáàâëÿåì çàïèñü*/
-			$json['user'.$lastID]=[
+			/*Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼ Ð·Ð°Ð¿Ð¸ÑÑŒ*/
+			$json['user'.$lastID]=array(
 				'userID' => $lastID,
 				'name' => $_GET['name'],
 				'mail' => $_GET['mail'],
 				'phone' => $_GET['phone'],
 				'group' => $_GET['group']
-			];
-			echo json_encode(['status' => 'add','userID' => $lastID]);
+			);
+			echo json_encode(array('status' => 'add','userID' => $lastID));
 		}else{
-			/*îáíîâëÿåì çàïèñü*/
-			$json['user'.$_GET['userID']]=[
+			/*Ð¾Ð±Ð½Ð¾Ð²Ð»ÑÐµÐ¼ Ð·Ð°Ð¿Ð¸ÑÑŒ*/
+			$json['user'.$_GET['userID']]=array(
 				'userID' => $_GET['userID'],
 				'name' => $_GET['name'],
 				'mail' => $_GET['mail'],
 				'phone' => $_GET['phone'],
 				'group' => $_GET['group']
-			];
+			);
 			echo '';
-			echo json_encode(['status' => 'update']);
+			echo json_encode(array('status' => 'update'));
 		}
 	}else if($_GET['type'] == 'removeContact'){
 		unset($json['user'.$_GET['userID']]);
@@ -43,7 +43,7 @@
 	}else{
 		echo 'error request type';
 	};
-	/*Çàïèñü*/
+	/*Ð—Ð°Ð¿Ð¸ÑÑŒ*/
 	$string = json_encode($json);	
 	file_put_contents($contactsFile, $string);
 ?>
